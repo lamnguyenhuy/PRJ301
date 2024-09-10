@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <style>
+            body {
+                background-color: lightblue;
+            }
+        </style>
+        <h1>Calculate Rectangle</h1>
+
+        <form action="result" method="post">
+            <label for="length">Length</label>
+            <input type="text" id="length" name="length" autofocus required><br><br>
+            <label for="width">Width</label>
+            <input type="text" id="width" name="width" required><br><br>
+            
+            <input type="radio" id="perimeter" value="cv" name="method" required="">
+            <label for="perimeter">Perimeter</label>
+            
+            <input type="radio" id="area" value="dt" name="method" required="">
+            <label for="area">Area</label><br><br>
+            <input type="submit" value="Send">
+        </form>
+        
+    </body>
+</html>
