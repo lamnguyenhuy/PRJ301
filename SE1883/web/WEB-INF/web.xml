@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>controller.Login</servlet-class>
+        <init-param>
+            <description>tai khoan</description>
+            <param-name>tk</param-name>
+            <param-value>admin</param-value>
+        </init-param>
+        <init-param>
+            <description>mat khau</description>
+            <param-name>mk</param-name>
+            <param-value>1235</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateStudentController</servlet-name>
+        <servlet-class>controller.CreateStudentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StudentLoadController</servlet-name>
+        <servlet-class>controller.StudentLoadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateStudentController</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentLoadController</servlet-name>
+        <url-pattern>/load</url-pattern>
+    </servlet-mapping>
+</web-app>
