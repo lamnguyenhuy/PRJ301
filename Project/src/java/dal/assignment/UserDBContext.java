@@ -12,22 +12,19 @@ import java.util.logging.Logger;
 import model.auth.Feature;
 import model.auth.Role;
 
-/**
- *
- * @author sonnt-local
- */
 public class UserDBContext extends DBContext<User> {
 
     public ArrayList<Role> getRoles(String username) {
         PreparedStatement stm = null;
         ArrayList<Role> roles = new ArrayList<>();
         try {
-            String sql = "SELECT r.rid,r.rname,f.fid,f.fname,f.[url] FROM [User] u \n"
-                    + "	INNER JOIN UserRole ur ON u.username = ur.username\n"
-                    + "	INNER JOIN [Role] r ON r.rid = ur.rid\n"
-                    + "	INNER JOIN RoleFeature rf ON rf.rid = r.rid\n"
-                    + "	INNER JOIN Feature f ON f.fid = rf.fid\n"
-                    + "WHERE u.username = ? ";
+            String sql = "SELECT r.rid, r.rname, f.fid, f.fname, f.url "
+                       + "FROM Users u "
+                       + "INNER JOIN UserRoles ur ON u.uid = ur.uid "
+                       + "INNER JOIN Roles r ON r.rid = ur.rid "
+                       + "INNER JOIN RoleFeatures rf ON rf.rid = r.rid "
+                       + "INNER JOIN Features f ON f.fid = rf.fid "
+                       + "WHERE u.username = ?";
             
             stm = connection.prepareStatement(sql);
             stm.setString(1, username);
@@ -73,7 +70,7 @@ public class UserDBContext extends DBContext<User> {
         User user = null;
         PreparedStatement stm = null;
         try {
-            String sql = "SELECT [username],[password],[displayname] FROM [User]\n"
+            String sql = "SELECT [username],[password] FROM [Users]\n"
                     + "WHERE [username] = ? AND [password] = ?";
             stm = connection.prepareStatement(sql);
             stm.setString(1, username);
@@ -81,7 +78,6 @@ public class UserDBContext extends DBContext<User> {
             ResultSet rs = stm.executeQuery();
             if (rs.next()) {
                 user = new User();
-                user.setDisplayname(rs.getString("displayname"));
                 user.setUsername(username);
             }
 

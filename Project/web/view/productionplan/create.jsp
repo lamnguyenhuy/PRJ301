@@ -46,7 +46,7 @@
     }
     
     table, th, td {
-        border: 2px solid #FF10FF;
+        border: 2px solid #89CFF0;
         padding: 8px;
         text-align: center;
     }

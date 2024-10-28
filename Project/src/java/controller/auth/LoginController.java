@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controller.auth;
 
 import dal.assignment.UserDBContext;
@@ -13,16 +10,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- *
- * @author sonng
- */
 
 public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String param_user = req.getParameter("username");//user input
+        String param_user = req.getParameter("username");
         String param_pass = req.getParameter("password");
         
         UserDBContext db = new UserDBContext();

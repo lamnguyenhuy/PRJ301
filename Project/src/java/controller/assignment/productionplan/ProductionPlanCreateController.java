@@ -5,6 +5,7 @@
 
 package controller.assignment.productionplan;
 
+import controller.auth.BaseRBACController;
 import dal.assignment.DepartmentDBContext;
 import dal.assignment.ProductDBContext;
 import dal.assignment.ProductionPlanDBContext;
@@ -19,20 +20,13 @@ import java.sql.*;
 import model.assignment.Department;
 import model.assignment.Product;
 import model.assignment.ProductionPlanHeader;
+import model.auth.User;
 
-public class ProductionPlanCreateController extends HttpServlet {
+public class ProductionPlanCreateController extends BaseRBACController {
    
    
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+   protected void doAuthorizedGet(HttpServletRequest request, HttpServletResponse response, User account)
     throws ServletException, IOException {
         DepartmentDBContext dbDept = new DepartmentDBContext();
         ProductDBContext dbProduct = new ProductDBContext();
@@ -43,15 +37,8 @@ public class ProductionPlanCreateController extends HttpServlet {
         request.getRequestDispatcher("../view/productionplan/create.jsp").forward(request, response);
     } 
 
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+     protected void doAuthorizedPost(HttpServletRequest request, HttpServletResponse response, User account)
     throws ServletException, IOException {
         ProductionPlan plan = new ProductionPlan();
         plan.setName(request.getParameter("name"));
