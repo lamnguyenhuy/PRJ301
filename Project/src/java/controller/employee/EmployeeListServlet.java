@@ -18,7 +18,7 @@ public class EmployeeListServlet extends HttpServlet {
         ArrayList<Employee> employees = employeeDB.getEmployees();
         
         request.setAttribute("employees", employees);
-        request.getRequestDispatcher("../view/employee/list.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/employee/view.jsp").forward(request, response);
     }
 }
 

@@ -8,6 +8,14 @@
         <servlet-name>EmployeeList</servlet-name>
         <servlet-class>controller.employee.EmployeeListServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EmployeeDelete</servlet-name>
+        <servlet-class>controller.employee.EmployeeDeleteController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmployeeUpdate</servlet-name>
+        <servlet-class>controller.employee.EmployeeeUpdateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProductionPlanCreateController</servlet-name>
         <url-pattern>/plan/create</url-pattern>
@@ -31,5 +39,13 @@
     <servlet-mapping>
         <servlet-name>EmployeeList</servlet-name>
         <url-pattern>/employee/view</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeeDelete</servlet-name>
+        <url-pattern>/employee/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeeUpdate</servlet-name>
+        <url-pattern>/employee/update</url-pattern>
     </servlet-mapping>
 </web-app>

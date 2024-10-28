@@ -39,6 +39,9 @@
     tr:nth-child(even) {
         background-color: #f9f9f9;
     }
+    .edit-button {
+            background-color: #4CAF50;
+            color: white;
 </style>
 
 </head>
@@ -53,6 +56,7 @@
                 <th>Address</th>
                 <th>Department</th>
                 <th>Salary</th>
+                  <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -64,6 +68,14 @@
                     <td>${e.address}</td>
                     <td>${e.department.name}</td>
                     <td>${e.salary.amount}</td>
+                    <td class="action-buttons">
+                    <a href="update?uid=${e.id}">
+                        <button class="edit-button">Update</button>
+                    </a>
+                    <a href="delete?uid=${e.id}" onclick="return confirm('Are you sure you want to delete this employee?')">
+                        <button class="delete-button">Delete</button>
+                    </a>
+                </td>
                 </tr>
             </c:forEach>
         </tbody>
