@@ -6,9 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Production Plan List</title>
-    <style>
+   <style>
     body {
         font-family: Arial, sans-serif;
+        background-color: #f0f8ff;
     }
 
     h2 {
@@ -24,21 +25,25 @@
 
     th, td {
         padding: 10px;
-        text-align: left;
+        text-align: center; /* Center-align text in columns */
         border-bottom: 1px solid #ddd;
     }
 
     th {
-        background-color: #f2f2f2;
-        color: #333;
-    }
-
-    tr:hover {
-        background-color: #f5f5f5;
+        background-color: #4CAF50;
+        color: white;
     }
 
     tr:nth-child(even) {
-        background-color: #f9f9f9;
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #e6f7ff;
+    }
+
+    tr:hover {
+        background-color: #d1e7dd;
     }
 
     .delete-button {
@@ -54,6 +59,8 @@
         opacity: 0.8;
     }
 </style>
+
+
 
 </head>
 <body>
@@ -120,6 +127,8 @@
         mergeCells(0);
         mergeCells(1);
         mergeCells(2); 
+        mergeCells(3); 
+        mergeCells(8); 
     });
 </script>
 
