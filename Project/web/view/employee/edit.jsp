@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +93,7 @@
     </select>
 
     <button type="submit">Update</button>
-    <button type="button" onclick="window.location.href='view.jsp'">Cancel</button>
+    <button type="button" onclick="window.location.href='view'">Cancel</button>
 </form>
 
 </body>

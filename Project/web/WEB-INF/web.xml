@@ -24,6 +24,10 @@
         <servlet-name>PlanDeleteController</servlet-name>
         <servlet-class>controller.assignment.productionplan.PlanDeleteController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlanDetailController</servlet-name>
+        <servlet-class>controller.assignment.productionplan.PlanDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProductionPlanCreateController</servlet-name>
         <url-pattern>/plan/create</url-pattern>
@@ -63,5 +67,9 @@
     <servlet-mapping>
         <servlet-name>PlanDeleteController</servlet-name>
         <url-pattern>/plan/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlanDetailController</servlet-name>
+        <url-pattern>/plandetails/view</url-pattern>
     </servlet-mapping>
 </web-app>

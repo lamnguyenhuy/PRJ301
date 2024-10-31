@@ -33,7 +33,7 @@ public class ProductionPlanCreateController extends BaseRBACController {
     } 
 
     @Override
-     protected void doAuthorizedPost(HttpServletRequest request, HttpServletResponse response, User account)
+     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         ProductionPlan plan = new ProductionPlan();
         plan.setName(request.getParameter("name"));
@@ -65,13 +65,18 @@ public class ProductionPlanCreateController extends BaseRBACController {
         {
             ProductionPlanDBContext db = new ProductionPlanDBContext();
             db.insert(plan);
-            response.getWriter().println("your plan has been added!");
+            request.getRequestDispatcher("../main.jsp").forward(request, response);
         }
         else
         {
             response.getWriter().println("your plan does not have any headers! it is not allowed!");
         }
         
+    }
+
+    @Override
+    protected void doAuthorizedPost(HttpServletRequest req, HttpServletResponse resp, User account) throws ServletException, IOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
    

@@ -9,32 +9,31 @@ import java.util.List;
 
 public class PlanDBContext extends DBContext {
 
-
     public List<Plan> getPlans() {
         List<Plan> plans = new ArrayList<>();
         try {
-            String sql = "SELECT " +
-                         "p.plid, " +
-                         "p.plname, " +
-                         "p.startdate, " +
-                         "p.enddate, " +
-                         "d.dname AS department_name, " +
-                         "ph.quantity AS total_amount, " +
-                         "COALESCE(ph.quantity - SUM(pd.quantity), ph.quantity) AS remained_amount, " +
-                         "pr.pname AS product_name, " +
-                         "pr.estimation AS product_estimation, " +
-                         "s.statusname AS status_name " +
-                         "FROM Plans p " +
-                         "JOIN Departments d ON p.did = d.did " +
-                         "LEFT JOIN Status s ON p.statusid = s.statusid " +
-                         "JOIN PlanHeaders ph ON p.plid = ph.plid " +
-                         "JOIN Products pr ON ph.pid = pr.pid " +
-                         "LEFT JOIN PlanDetails pd ON ph.phid = pd.phid " +
-                         "GROUP BY p.plid, p.plname, p.startdate, p.enddate, d.dname, ph.quantity, pr.pname, pr.estimation, s.statusname";
-                         
+            String sql = "SELECT "
+                    + "p.plid, "
+                    + "p.plname, "
+                    + "p.startdate, "
+                    + "p.enddate, "
+                    + "d.dname AS department_name, "
+                    + "ph.quantity AS total_amount, "
+                    + "COALESCE(ph.quantity - SUM(pd.quantity), ph.quantity) AS remained_amount, "
+                    + "pr.pname AS product_name, "
+                    + "pr.estimation AS product_estimation, "
+                    + "s.statusname AS status_name "
+                    + "FROM Plans p "
+                    + "JOIN Departments d ON p.did = d.did "
+                    + "LEFT JOIN Status s ON p.statusid = s.statusid "
+                    + "JOIN PlanHeaders ph ON p.plid = ph.plid "
+                    + "JOIN Products pr ON ph.pid = pr.pid "
+                    + "LEFT JOIN PlanDetails pd ON ph.phid = pd.phid "
+                    + "GROUP BY p.plid, p.plname, p.startdate, p.enddate, d.dname, ph.quantity, pr.pname, pr.estimation, s.statusname";
+
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
-            
+
             while (rs.next()) {
                 Plan plan = new Plan();
                 plan.setId(rs.getInt("plid"));
@@ -54,12 +53,15 @@ public class PlanDBContext extends DBContext {
         return plans;
     }
 
-
     public void deletePlan(int id) {
         try {
-            String sql = "DELETE FROM Plan WHERE id = ?";
+            String sql = "delete from PlanDetails where pdid = ?\n"
+                    + "delete from PlanHeaders where plid = ?\n"
+                    + "delete from Plans where plid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
+            stm.setInt(2, id);
+            stm.setInt(3, id);
             stm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
