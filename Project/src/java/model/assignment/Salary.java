@@ -6,7 +6,7 @@ public class Salary {
     private String level;
     private float amount;
 
-    // Constructors, getters, and setters
+
     public int getId() {
         return id;
     }

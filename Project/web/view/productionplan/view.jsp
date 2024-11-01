@@ -55,9 +55,20 @@
         cursor: pointer;
     }
 
-    .delete-button:hover {
+    .delete-button, .view-button:hover {
         opacity: 0.8;
     }
+    
+    .view-button {
+        background-color: green;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+
 </style>
 
 
@@ -78,7 +89,8 @@
             <th>Total Amount</th>
             <th>Product</th>
             <th>Estimation</th>
-            <th>Delete</th>
+            <th></th>
+             <th></th>
         </tr>
     </thead>
     <tbody>
@@ -92,6 +104,12 @@
                 <td>${plan.totalAmount}</td>
                 <td>${plan.product}</td>
                 <td>${plan.estimation}</td>
+                 <td>
+                    <form action="../plandetails/view" method="get" style="display: inline;">
+                        <input type="hidden" name="id" value="${plan.id}">
+                        <button type="submit" class="view-button">View Details</button>
+                    </form>
+                </td>
                 <td>
                     <form action="delete" method="post" style="display: inline;">
                         <input type="hidden" name="id" value="${plan.id}">
@@ -129,6 +147,7 @@
         mergeCells(2); 
         mergeCells(3); 
         mergeCells(8); 
+        mergeCells(9); 
     });
 </script>
 

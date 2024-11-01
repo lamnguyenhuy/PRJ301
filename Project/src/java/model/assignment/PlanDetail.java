@@ -7,7 +7,7 @@ public class PlanDetail {
     private Date date;
     private int productId;
     private String productName;
-    private String shift;
+    private Shift shift;
     private int quantity;
 
     public Date getDate() {
@@ -36,11 +36,11 @@ public class PlanDetail {
         this.productName = productName;
     }
 
-    public String getShift() {
+    public Shift getShift() {
         return shift;
     }
 
-    public void setShift(String shift) {
+    public void setShift(Shift shift) {
         this.shift = shift;
     }
 
@@ -50,5 +50,9 @@ public class PlanDetail {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public void setProduct(Product product) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

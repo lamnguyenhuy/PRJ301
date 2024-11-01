@@ -14,7 +14,7 @@ public class PlanDetailController extends HttpServlet {
    @Override
 protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-    String planIdParam = request.getParameter("planId");
+    String planIdParam = request.getParameter("id");
     int planId;
 
     try {

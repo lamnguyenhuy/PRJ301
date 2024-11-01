@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.assignment.PlanDetail;
+import model.assignment.Shift;
 
 public class DetailDBContext extends DBContext {
 
@@ -38,6 +39,7 @@ public class DetailDBContext extends DBContext {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 PlanDetail detail = new PlanDetail();
+
                 Date date = rs.getDate("Date");
                 if (date != null) {
                     detail.setDate(date);
@@ -45,13 +47,18 @@ public class DetailDBContext extends DBContext {
 
                 detail.setProductId(rs.getInt("ProductID"));
                 detail.setProductName(rs.getString("ProductName"));
-                detail.setShift(rs.getString("Shift"));
                 detail.setQuantity(rs.getInt("Quantity"));
+
+                Shift shift = new Shift();
+                shift.setName(rs.getString("Shift"));
+                detail.setShift(shift); 
+
                 details.add(detail);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return details;
     }
 
