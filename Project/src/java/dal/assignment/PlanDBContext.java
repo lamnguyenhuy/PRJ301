@@ -4,6 +4,7 @@ import model.assignment.Plan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,15 +22,13 @@ public class PlanDBContext extends DBContext {
                     + "ph.quantity AS total_amount, "
                     + "COALESCE(ph.quantity - SUM(pd.quantity), ph.quantity) AS remained_amount, "
                     + "pr.pname AS product_name, "
-                    + "pr.estimation AS product_estimation, "
-                    + "s.statusname AS status_name "
+                    + "pr.estimation AS product_estimation "
                     + "FROM Plans p "
                     + "JOIN Departments d ON p.did = d.did "
-                    + "LEFT JOIN Status s ON p.statusid = s.statusid "
                     + "JOIN PlanHeaders ph ON p.plid = ph.plid "
                     + "JOIN Products pr ON ph.pid = pr.pid "
                     + "LEFT JOIN PlanDetails pd ON ph.phid = pd.phid "
-                    + "GROUP BY p.plid, p.plname, p.startdate, p.enddate, d.dname, ph.quantity, pr.pname, pr.estimation, s.statusname";
+                    + "GROUP BY p.plid, p.plname, p.startdate, p.enddate, d.dname, ph.quantity, pr.pname, pr.estimation";
 
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
@@ -44,7 +43,6 @@ public class PlanDBContext extends DBContext {
                 plan.setRemainedAmount(rs.getInt("remained_amount"));
                 plan.setProduct(rs.getString("product_name"));
                 plan.setEstimation(rs.getFloat("product_estimation"));
-                plan.setStatusName(rs.getString("status_name"));
                 plans.add(plan);
             }
         } catch (Exception e) {

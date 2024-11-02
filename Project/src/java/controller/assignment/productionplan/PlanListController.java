@@ -20,6 +20,11 @@ public class PlanListController extends BaseRBACController {
             throws ServletException, IOException {
         PlanDBContext db = new PlanDBContext();
         List<Plan> plans = db.getPlans();
+         if (plans == null || plans.isEmpty()) {
+        response.getWriter().println("login lor!");
+    } else {
+       response.getWriter().println("login ngon!");
+    }
         request.setAttribute("plans", plans);
         request.getRequestDispatcher("../view/productionplan/view.jsp").forward(request, response);
     }
