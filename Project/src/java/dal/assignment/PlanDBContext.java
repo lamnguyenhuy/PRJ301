@@ -13,22 +13,23 @@ public class PlanDBContext extends DBContext {
     public List<Plan> getPlans() {
         List<Plan> plans = new ArrayList<>();
         try {
-            String sql = "SELECT "
-                    + "p.plid, "
-                    + "p.plname, "
-                    + "p.startdate, "
-                    + "p.enddate, "
-                    + "d.dname AS department_name, "
-                    + "ph.quantity AS total_amount, "
-                    + "COALESCE(ph.quantity - SUM(pd.quantity), ph.quantity) AS remained_amount, "
-                    + "pr.pname AS product_name, "
-                    + "pr.estimation AS product_estimation "
-                    + "FROM Plans p "
-                    + "JOIN Departments d ON p.did = d.did "
-                    + "JOIN PlanHeaders ph ON p.plid = ph.plid "
-                    + "JOIN Products pr ON ph.pid = pr.pid "
-                    + "LEFT JOIN PlanDetails pd ON ph.phid = pd.phid "
-                    + "GROUP BY p.plid, p.plname, p.startdate, p.enddate, d.dname, ph.quantity, pr.pname, pr.estimation";
+            String sql = "SELECT \n"
+                    + "                     p.plid, \n"
+                    + "                     p.plname, \n"
+                    + "                     p.startdate, \n"
+                    + "                     p.enddate, \n"
+                    + "                     d.dname AS department_name, \n"
+                    + "                     ph.quantity AS total_amount, \n"
+                    + "                     COALESCE(ph.quantity - SUM(pd.quantity), ph.quantity) AS remained_amount, \n"
+                    + "                     pr.pname AS product_name, \n"
+                    + "                    ph.estimatedeffort AS product_estimation \n"
+                    + "                     FROM Plans p \n"
+                    + "                     JOIN Departments d ON p.did = d.did \n"
+                    + "                     JOIN PlanHeaders ph ON p.plid = ph.plid \n"
+                    + "                     JOIN Products pr ON ph.pid = pr.pid \n"
+                    + "                     LEFT JOIN PlanDetails pd ON ph.phid = pd.phid \n"
+                    + "                     GROUP BY p.plid, p.plname, p.startdate, p.enddate, d.dname, ph.quantity, pr.pname, ph.estimatedeffort\n"
+                    + "                      order by p.plid asc, p.plname asc, pr.pname asc;";
 
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();

@@ -32,7 +32,7 @@ public class DetailDBContext extends DBContext {
                 + "where pl.plid=?\n"
                 + "\n"
                 + "ORDER BY \n"
-                + "    pd.date ASC,  s.sname ASC;";
+                + "    pd.date ASC,  s.sname ASC, p.pid ASC;";
 
         try (PreparedStatement stm = connection.prepareStatement(sql)) {
             stm.setInt(1, planId);

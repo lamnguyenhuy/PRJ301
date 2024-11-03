@@ -26,7 +26,11 @@
     </servlet>
     <servlet>
         <servlet-name>PlanDetailController</servlet-name>
-        <servlet-class>controller.assignment.productionplan.PlanDetailController</servlet-class>
+        <servlet-class>controller.assignment.productionplan.DetailListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailCreateController</servlet-name>
+        <servlet-class>controller.assignment.productionplan.DetailCreateController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductionPlanCreateController</servlet-name>
@@ -34,7 +38,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ProductionPlanCreateController</servlet-name>
-        <servlet-class>controller.assignment.productionplan.ProductionPlanCreateController</servlet-class>
+        <servlet-class>controller.assignment.productionplan.PlanCreateController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>
@@ -72,4 +76,33 @@
         <servlet-name>PlanDetailController</servlet-name>
         <url-pattern>/plandetails/view</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailCreateController</servlet-name>
+        <url-pattern>/plandetails/create</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>plandetailFilter</filter-name>
+        <filter-class>filter.plandetailFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>plandetailFilter</filter-name>
+        <url-pattern>/plandetails/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>plandetailFilter</filter-name>
+        <url-pattern>/employee/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>plandetailFilter</filter-name>
+        <url-pattern>/plan/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>AccessControlFilter</filter-name>
+        <filter-class>filter.AccessControlFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AccessControlFilter</filter-name>
+        <url-pattern>/employee/create</url-pattern>
+    </filter-mapping>
 </web-app>

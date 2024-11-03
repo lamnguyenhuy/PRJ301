@@ -17,7 +17,7 @@ import model.assignment.Product;
 import model.assignment.ProductionPlanHeader;
 import model.auth.User;
 
-public class ProductionPlanCreateController extends BaseRBACController {
+public class PlanCreateController extends BaseRBACController {
    
    
     @Override

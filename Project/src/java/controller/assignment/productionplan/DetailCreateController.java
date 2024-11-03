@@ -44,7 +44,7 @@ public class DetailCreateController extends HttpServlet {
         request.setAttribute("products", products);
 
 
-        request.getRequestDispatcher("/view/productionplan/detail_create.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/productionplan/create.jsp").forward(request, response);
     }
 
     @Override

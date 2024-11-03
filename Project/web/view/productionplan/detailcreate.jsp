@@ -1,71 +1,104 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Create Production Plan Details</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-            }
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-            th, td {
-                border: 1px solid #ddd;
-                padding: 8px;
-            }
-            th {
-                background-color: #f2f2f2;
-            }
-        </style>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>Create Plan Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
 
-        <h2>Create Production Plan Details</h2>
+        h2 {
+            text-align: center;
+            color: #333;
+        }
 
-        <form action="createPlanDetail" method="post">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Shift</th>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
 
-                    <c:forEach var="day" items="${days}">
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
 
-                        <c:forEach var="shift" items="${shifts}">
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
 
-                            <c:forEach var="product" items="${products}">
-                                <tr>
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-                                    <c:if test="${shift eq shifts[0] && product eq products[0]}">
-                                        <td rowspan="${shifts.size() * products.size()}">${day}</td>
-                                    </c:if>
+        .input-section {
+            width: 80%;
+            margin: 20px auto;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
 
-                                    <c:if test="${product eq products[0]}">
-                                        <td rowspan="${products.size()}">${shift.name}</td>
-                                    </c:if>
+<h2>Create Plan Detail</h2>
 
-                                    <td>${product.name}</td>
-                                    <td>
-                                        <input type="number" name="quantity_${day}_${shift.id}_${product.id}" min="0" value="0" required>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </c:forEach>
-                    </c:forEach>
-                </tbody>
-            </table>
-            <br>
-            <button type="submit">Submit</button>
-        </form>
+<!-- Bảng hiển thị tạm thời dữ liệu đã nhập -->
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Shift</th>
+            <th>Product</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody id="detailsTable">
+        <!-- Dòng sẽ được thêm vào đây bằng JavaScript -->
+    </tbody>
+</table>
 
-    </body>
+<div class="input-section">
+    <form id="detailForm">
+        <label>Date:
+            <select id="dateSelect">
+                <c:forEach var="day" items="${dateRange}">
+                    <option value="${day}">${day}</option>
+                </c:forEach>
+            </select>
+        </label>
+
+        <label>Shift:
+            <input type="radio" name="shift" value="K1"> K1
+            <input type="radio" name="shift" value="K2"> K2
+            <input type="radio" name="shift" value="K3"> K3
+        </label>
+
+        <label>Product:
+            <c:forEach var="product" items="${products}">
+                <input type="radio" name="product" value="${product}"> ${product}
+            </c:forEach>
+        </label>
+
+        <label>Quantity:
+            <input type="number" id="quantityInput" min="1">
+        </label>
+
+        <input type="submit" value="add">
+    </form>
+</div>
+
+
+
+
+</body>
 </html>
