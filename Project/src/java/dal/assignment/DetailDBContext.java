@@ -12,27 +12,22 @@ public class DetailDBContext extends DBContext {
 
     public List<PlanDetail> getPlanDetailsByPlanId(int planId) {
         List<PlanDetail> details = new ArrayList<>();
-        String sql = "SELECT \n"
-                + "    pd.date AS \"Date\",\n"
-                + "    p.pid AS \"ProductID\",\n"
-                + "    p.pname AS \"ProductName\",\n"
-                + "    s.sname AS \"Shift\",\n"
-                + "    pd.quantity AS \"Quantity\"\n"
-                + "\n"
-                + "FROM \n"
-                + "    PlanDetails pd\n"
-                + "JOIN \n"
-                + "    PlanHeaders ph ON pd.phid = ph.phid\n"
-                + "JOIN \n"
-                + "    Products p ON ph.pid = p.pid\n"
-                + "JOIN \n"
-                + "    Shifts s ON pd.sid = s.sid\n"
-                + "join Plans pl on pl.plid = ph.plid\n"
-                + "\n"
-                + "where pl.plid=?\n"
-                + "\n"
-                + "ORDER BY \n"
-                + "    pd.date ASC,  s.sname ASC, p.pid ASC;";
+        String sql = "SELECT	pd.pdid, pd.date AS Date, p.pid AS ProductID, p.pname AS ProductName, s.sname AS Shift,\n" +
+"                     pd.quantity AS Quantity\n" +
+"                 FROM \n" +
+"                     PlanDetails pd\n" +
+"                 JOIN \n" +
+"                     PlanHeaders ph ON pd.phid = ph.phid\n" +
+"                 JOIN \n" +
+"                     Products p ON ph.pid = p.pid\n" +
+"                 JOIN \n" +
+"                     Shifts s ON pd.sid = s.sid\n" +
+"                 join Plans pl on pl.plid = ph.plid\n" +
+"                 \n" +
+"                 where pl.plid=?\n" +
+"                 \n" +
+"                 ORDER BY \n" +
+"                     pd.date ASC,  s.sname ASC, p.pid ASC;";
 
         try (PreparedStatement stm = connection.prepareStatement(sql)) {
             stm.setInt(1, planId);
@@ -44,7 +39,7 @@ public class DetailDBContext extends DBContext {
                 if (date != null) {
                     detail.setDate(date);
                 }
-
+                detail.setId(rs.getInt("pdid"));
                 detail.setProductId(rs.getInt("ProductID"));
                 detail.setProductName(rs.getString("ProductName"));
                 detail.setQuantity(rs.getInt("Quantity"));

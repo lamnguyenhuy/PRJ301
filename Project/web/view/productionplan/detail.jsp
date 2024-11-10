@@ -74,11 +74,12 @@
                         <td>${detail.quantity}</td>
                     </tr>
                 </c:forEach>
-            <form action="create" method="post" style="display: inline;">
-                <input type="hidden" name="startdate" value="${plan.startDate}">
-                <input type="hidden" name="enddate" value="${plan.endDate}">
-                <button type="submit"  >Create</button>
-            </form>
+            <form action="../plandetails/view" method="get" style="display: inline;">
+                <c:forEach var="detail" items="${planDetails}">
+                        <input type="hidden" name="pdid" value="${detail.id}">
+                        </c:forEach>
+                        <button type="submit">Create</button>
+                    </form>
         </tbody>
     </table>
 </body>

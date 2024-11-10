@@ -3,7 +3,7 @@ package model.assignment;
 import java.sql.*;
 
 public class PlanDetail {
-
+    private int id;
     private Date date;
     private int productId;
     private String productName;
@@ -16,6 +16,14 @@ public class PlanDetail {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     
