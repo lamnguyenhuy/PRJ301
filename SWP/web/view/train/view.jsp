@@ -6,29 +6,43 @@
     <meta charset="UTF-8">
     <title>Train List</title>
     <style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
 </style>
 
 </head>
 <body>
-    <div class="filter-section">
-        <form action="TrainController" method="GET">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="departStation">Ga Đi</label>
-                    <input type="text" class="form-control" id="departStation" name="departStation" placeholder="Nhập Ga Đi">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="arriveStation">Ga Đến</label>
-                    <input type="text" class="form-control" id="arriveStation" name="arriveStation" placeholder="Nhập Ga Đến">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="departureDate">Ngày Khởi Hành</label>
-                    <input type="date" class="form-control" id="departureDate" name="departureDate">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Lọc</button>
-        </form>
-    </div>
     <h2>Train List</h2>
     <table>
         <thead>
